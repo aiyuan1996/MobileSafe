@@ -16,6 +16,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -25,6 +26,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 public class HomeActivity extends Activity{
+	private String TAG = "HomeActivity";
 	//声明GridView
 	private GridView gv_home;
 	private SharedPreferences sharedPreferences;
@@ -154,6 +156,7 @@ public class HomeActivity extends Activity{
 		Editor editor = sharedPreferences.edit();
 		//为了防止用户隐私泄露，加密密码
 		editor.putString("PhoneAntiTheftPWD", MD5utils.encode(affirmPwsd));
+		Log.d(TAG, "密码是：" + MD5utils.encode(affirmPwsd));
 		editor.commit();
 	}
 	protected void showInterPswdDialog() {
@@ -163,14 +166,17 @@ public class HomeActivity extends Activity{
 			
 			@Override
 			public void confirm() {
-				if(!TextUtils.isEmpty(interPasswordDialog.getPassword())){
+				Log.d(TAG, "确定按钮");
+				if(TextUtils.isEmpty(interPasswordDialog.getPassword())){
 					Toast.makeText(HomeActivity.this, "密码不能为空", 0).show();
 				}else if(password.equals(MD5utils.encode(interPasswordDialog.getPassword()))){
 					//进入防盗主界面
 					interPasswordDialog.dismiss();
+					Log.d(TAG, "密码正确");
 					startActivity(LostFindActivity.class);
 				}else {
 					//对话框消失
+					Log.d(TAG, "密码错误");
 					interPasswordDialog.dismiss();
 					Toast.makeText(HomeActivity.this, "密码错误", 0).show();
 				}
@@ -178,6 +184,7 @@ public class HomeActivity extends Activity{
 			
 			@Override
 			public void cancle() {
+				Log.d(TAG, "取消按钮");
 				interPasswordDialog.dismiss();
 			}
 		});
@@ -194,6 +201,7 @@ public class HomeActivity extends Activity{
 		if(TextUtils.isEmpty(password)){
 			return "";
 		}
+		Log.d(TAG, "从数据库中取出的密码是：" + password);
 		return password;
 	}
 	

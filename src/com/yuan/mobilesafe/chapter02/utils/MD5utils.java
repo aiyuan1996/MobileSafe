@@ -14,24 +14,22 @@ public class MD5utils {
 		try {
 			MessageDigest digest = MessageDigest.getInstance("md5");
 			byte[] result = digest.digest(text.getBytes());
-			StringBuilder builder = new StringBuilder();
+			StringBuilder sb  =new StringBuilder();
 			for(byte b : result){
-				int number = 0 & 0xff;
+				int number = b&0xff; 
 				String hex = Integer.toHexString(number);
-				if(hex.length() == 1){
-					builder.append("0" + hex);
-				}else {
-					builder.append(hex);
+				if(hex.length()==1){
+					sb.append("0"+hex);
+				}else{
+					sb.append(hex);
 				}
-				
 			}
-			return builder.toString();
+			return sb.toString();
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 			//can't reach
 			return "";
 		}
-		
 	}
 	
 }

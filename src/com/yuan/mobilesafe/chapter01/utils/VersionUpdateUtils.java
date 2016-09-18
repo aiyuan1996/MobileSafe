@@ -95,7 +95,7 @@ public class VersionUpdateUtils {
 			HttpConnectionParams.setConnectionTimeout(client.getParams(), 5000);
 			//请求超时
 			HttpConnectionParams.setSoTimeout(client.getParams(), 5000);
-			HttpGet httpGet = new HttpGet("http://192.168.1.145:8080/updateinfo.html");
+			HttpGet httpGet = new HttpGet("http://100.64.5.13:8080/updateinfo.html");
 			HttpResponse execute = client.execute(httpGet);
 			if(execute.getStatusLine().getStatusCode() == 200){
 				//请求和相应都成功了

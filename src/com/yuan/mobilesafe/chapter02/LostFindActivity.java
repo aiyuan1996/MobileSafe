@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 public class LostFindActivity extends Activity implements OnClickListener{
+	private String TAG = "LostFindActivity";
 	private TextView mSafePhoneTV;
 	private RelativeLayout mInterSetupRL;
 	private SharedPreferences msharedPreferences;
@@ -29,11 +31,15 @@ public class LostFindActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_lostfind);
+		Log.d(TAG, "进入LostFindActivity");
 		msharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
+		
 		if(!isSetUp()){
 			//如果没有进入过设置向导
+			Log.d(TAG, "没有设置向导");
 			startSetUp1Activity();
 		}
+		Log.d(TAG, "设置了向导");
 		initview();
 	}
 
@@ -52,6 +58,7 @@ public class LostFindActivity extends Activity implements OnClickListener{
 		mProtectStatusTV = (TextView) findViewById(R.id.tv_lostfind_protectstauts);
 		//查询手机防盗是否开启
 		boolean protecting = msharedPreferences.getBoolean("protecting", false);
+		Log.d(TAG, "protecting="+protecting);
 		if(protecting){
 			mProtectStatusTV.setText("防盗保护已经开启");
 			mToggleButton.setChecked(true);
@@ -70,19 +77,21 @@ public class LostFindActivity extends Activity implements OnClickListener{
 				}
 				Editor editor = msharedPreferences.edit();
 				editor.putBoolean("protecting", isChecked);
+				Log.d(TAG, "protecting:" + isChecked);
 				editor.commit();
 			}
 		});
 	}
 
 	private void startSetUp1Activity() {
+		Log.d(TAG, "准备进入设置向导页面");
 		Intent intent = new Intent(LostFindActivity.this,SetUp1Activity.class);
 		startActivity(intent);
 		finish();
 	}
 
 	private boolean isSetUp() {
-		return msharedPreferences.getBoolean("isSutUp", false);
+		return msharedPreferences.getBoolean("isSetUp", false);
 	}
 
 	@Override

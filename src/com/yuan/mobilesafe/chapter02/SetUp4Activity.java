@@ -4,6 +4,7 @@ import com.yuan.mobilesafe.R;
 
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.RadioButton;
@@ -11,11 +12,13 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 public class SetUp4Activity extends BaseSetUpActivity{
+	private String TAG = "SetUp4Activity";
 	private TextView mStatusTv;
 	private ToggleButton mToggleButton;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Log.d("LostFindActivity", "页面4");
 		setContentView(R.layout.activity_setup4);
 		initview();
 	}
@@ -35,6 +38,7 @@ public class SetUp4Activity extends BaseSetUpActivity{
 				}
 				Editor editor = sp.edit();
 				editor.putBoolean("Protecting", isChecked);
+				Log.d(TAG, "防盗保护：" + isChecked);
 				editor.commit();
 			}
 		});
@@ -43,7 +47,7 @@ public class SetUp4Activity extends BaseSetUpActivity{
 			mStatusTv.setText("防盗保护已经开启");
 			mToggleButton.setChecked(true);
 		}else {
-			mStatusTv.setText("放到保护没有开启");
+			mStatusTv.setText("防盗保护没有开启");
 			mToggleButton.setChecked(false);
 		}
 	}

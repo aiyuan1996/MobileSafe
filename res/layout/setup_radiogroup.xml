@@ -11,14 +11,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         
-        <Button 
+        <RadioButton 
             android:id="@+id/rb_first"
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:button="@null"
             android:background="@drawable/circle_purple_bg_selector"/>
         
-        <Button 
+        <RadioButton 
             android:id="@+id/rb_second"
             android:layout_width="10dp"
             android:layout_height="10dp"
@@ -26,7 +26,7 @@
             android:layout_marginLeft="15dp"
             android:background="@drawable/circle_purple_bg_selector"/>
         
-        <Button 
+        <RadioButton 
             android:id="@+id/rb_third"
             android:layout_width="10dp"
             android:layout_height="10dp"
@@ -34,7 +34,7 @@
             android:layout_marginLeft="15dp"
             android:background="@drawable/circle_purple_bg_selector"/>
         
-        <Button 
+        <RadioButton 
             android:id="@+id/rb_four"
             android:layout_width="10dp"
             android:layout_height="10dp"

@@ -104,7 +104,7 @@
             android:background="@drawable/round_purple_tv_bg"
             android:gravity="center"
             android:text="短信指令功能简介"
-            android:textColor="@color/purple"
+            android:textColor="@color/white"
             android:textSize="16sp" />
 
         <RelativeLayout

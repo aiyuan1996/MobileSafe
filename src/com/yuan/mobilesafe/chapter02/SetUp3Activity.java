@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ public class SetUp3Activity extends BaseSetUpActivity implements OnClickListener
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Log.d("LostFindActivity", "Ò³Ãæ3");
 		setContentView(R.layout.activity_setup3);
 		initview();
 	}

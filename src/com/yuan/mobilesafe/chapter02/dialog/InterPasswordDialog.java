@@ -2,15 +2,18 @@ package com.yuan.mobilesafe.chapter02.dialog;
 
 import com.yuan.mobilesafe.R;
 import com.yuan.mobilesafe.chapter02.dialog.SetUpPasswordDialog.MyCallBack;
+import com.yuan.mobilesafe.chapter02.utils.MD5utils;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 
 public class InterPasswordDialog extends Dialog implements android.view.View.OnClickListener{
+	private String TAG = "InterPasswordDialog";
 	/**对话框标题*/
 	private TextView mTitleTV;
 	/**输入密码文本框*/
@@ -60,6 +63,7 @@ public class InterPasswordDialog extends Dialog implements android.view.View.OnC
 	}
 	
 	public String getPassword(){
+		Log.d(TAG, "从输入框的道德密码的md5加密是：" + MD5utils.encode(mInterET.getText().toString()));
 		return mInterET.getText().toString();
 	}
 
